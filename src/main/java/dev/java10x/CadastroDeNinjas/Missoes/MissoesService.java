@@ -8,14 +8,14 @@ import java.util.Optional;
 @Service
 public class MissoesService {
 
-    private static MissoesRepository missoesRepository;
+    private MissoesRepository missoesRepository;
 
     public MissoesService(MissoesRepository missoesRepository) {
         this.missoesRepository = missoesRepository;
     }
 
     //listar todas as missoes
-    public static List<MissoesModel> listarMissoes(){
+    public List<MissoesModel> listarMissoes(){
         return missoesRepository.findAll();
     }
 
@@ -25,5 +25,13 @@ public class MissoesService {
         return missaoPorId.orElse(null);
     }
 
+    //Criar missao
+    public MissoesModel criarMissao(MissoesModel missao){
+        return missoesRepository.save(missao);
+    }
 
+    //Deletar Missao por ID
+    public void deletarMissaoPorId(Long id){
+        missoesRepository.deleteById(id);
+    }
 }

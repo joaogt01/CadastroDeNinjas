@@ -16,13 +16,13 @@ public class MissoesController {
     }
 
     @PostMapping("/criar")
-    public String criarMissao(){
-        return "Missao Criada";
+    public MissoesModel criarMissao(@RequestBody MissoesModel missao){
+        return missoesService.criarMissao(missao);
     }
 
     @GetMapping("/listar")
     public List<MissoesModel> listarNinjas(){
-        return MissoesService.listarMissoes();
+        return missoesService.listarMissoes();
     }
 
     @GetMapping("/listar/{id}")
@@ -35,9 +35,9 @@ public class MissoesController {
         return "Alterar Missoes Por Id";
     }
 
-    @DeleteMapping("/deletarID")
-    public String deletarMissaoPorId(){
-        return "Deletar Missao Por Id";
+    @DeleteMapping("/deletarID/{id}")
+    public void deletarMissaoPorId(@PathVariable Long id){
+        missoesService.deletarMissaoPorId(id);
     }
 
 }
